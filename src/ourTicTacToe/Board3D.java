@@ -5,7 +5,6 @@ public class Board3D {
 	public Board3D(){
 		
 	}
-
 	public int thing = 0;
 
 }
