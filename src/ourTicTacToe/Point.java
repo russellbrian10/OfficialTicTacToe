@@ -6,5 +6,5 @@ public class Point {
 	public int other = 9;
 	public int also = 6;
 	
-	public int onlyonBrianBranch = 5;
+	public int onlyonBrianBranch = 50;
 }
