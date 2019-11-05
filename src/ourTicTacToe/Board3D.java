@@ -6,5 +6,5 @@ public class Board3D {
 		
 	}
 	public int thing = 0;
-
+	public int thing2 = 69;
 }
