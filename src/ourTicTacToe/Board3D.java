@@ -5,6 +5,6 @@ public class Board3D {
 	public Board3D(){
 		
 	}
-	String hiString = "hello";
+	String hiString = "he";
 	String hiString2 = "hello2";
 }
