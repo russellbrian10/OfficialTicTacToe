@@ -7,4 +7,8 @@ public class Point {
 	public int also = 6;
 	
 	public int onlyonBrianBranch = 50;
+	
+	
+	
+	public boolean anotherone;
 }
