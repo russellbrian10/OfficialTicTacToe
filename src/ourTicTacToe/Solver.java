@@ -3,6 +3,7 @@ package ourTicTacToe;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Solver {
 	public boolean isP1 = true;
@@ -98,5 +99,23 @@ public class Solver {
 			}
 		}	
 		return positions;
+	}
+	
+	
+	
+	
+	
+	public ArrayList<Integer> nextMoveRandomizationAdjusted(Point[][][] board, int totalNumTrials, int currentNumTrials) {
+		double explorationLikelihood = (currentNumTrials-totalNumTrials)/totalNumTrials;
+		if (Math.random() > explorationLikelihood) {
+			return nextMoveNoRandom(board);
+		} else {
+			Random r = new Random();
+			ArrayList<Integer> randomizedPoint = new ArrayList<Integer>();
+			randomizedPoint.add(r.nextInt(4));
+			randomizedPoint.add(r.nextInt(4));
+			randomizedPoint.add(r.nextInt(4));
+			return randomizedPoint;
+		}	
 	}
 }
