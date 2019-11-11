@@ -18,5 +18,12 @@ public class Solver {
 			System.out.println("Error in input. Try again");
 			System.exit(0);
 		}
+		
+		Board3D board3D = new Board3D();
+		//print out a board with utility values after a number of trials (trials1, trials2, trials3)
+		Point[][][] board = board3D.getBoard();
+		
+		board3D.printBoard();
+		
 	}
 }
