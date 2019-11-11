@@ -12,7 +12,6 @@ public class Point {
 		util_val = 0;
 		num_wins = 0;
 		num_games = 0;
-		
 	}
 	
 	//Change the state of the Point (-1: O; 0: blank; 1: X)
@@ -21,7 +20,7 @@ public class Point {
 	}
 	
 	//Increase or decrease the value depending on game outcome
-	public int updateValue(int outcome){
+	public float updateValue(int outcome){
 		if (outcome == 1){	//Part of the winning solution
 			util_val += 0.05;
 		} else if (outcome == -1){ //Not part of the winning solution
@@ -29,12 +28,12 @@ public class Point {
 		}
 		return util_val;
 	}	
-	
+
 	public int getNumWins(){
-		
+		return 0;
 	}
 	public int getNumGames(){
-		
+		return 0;
 	}
 	public int getUtilValue(){
 		return num_wins/num_games;
