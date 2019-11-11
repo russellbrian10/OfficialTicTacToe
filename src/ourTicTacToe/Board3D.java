@@ -15,7 +15,7 @@ public class Board3D {
 			for (int j=0; j<4; j++) {
 				for (int k=0; k<4; k++) {
 					board[i][j][k] = new Point(0);
-					board[i][j][k].util_val = (float) (Math.round(Math.random()*100.0)/100.0);
+//					board[i][j][k].util_val = (float) (Math.round(Math.random()*100.0)/100.0);
 				}
 			}
 		}	
