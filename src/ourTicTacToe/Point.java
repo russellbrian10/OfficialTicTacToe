@@ -40,11 +40,11 @@ public class Point {
 	public int getNumGames(){
 		return num_games;
 	}
-	public float getUtilValue(){
+	public double getUtilValue(){
 		if (num_games > 1) {
-			return (float) num_wins/(num_games-1);
+			return (double) num_wins/(num_games-1);
 		} else {
-			return (float) num_wins/num_games;
+			return (double) num_wins/num_games;
 		}
 //		return (float) num_wins/num_games;
 	}
