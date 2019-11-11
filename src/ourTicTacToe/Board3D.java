@@ -28,7 +28,30 @@ public class Board3D {
 				board[x][y][z].state = -1;
 			}
 		}
+		
+		// checks if all spaces have been played or one of the two players has won a game.
+		checkIfWon(x,y,z);
+		checkIfOverNoWin();
 
+	}
+	
+	public int checkIfWon(int x,int y,int z) {		// returns 1 if p1 has won, -1 if p2 has won, 0 if no one has won yet
+		int potentialWinner = board[x][y][z].state;
+		
+	}
+	
+	public boolean checkIfOverNoWin() {
+		for (int i=0; i<4; i++) {
+			for (int j=0; j<4; j++) {
+				for (int k=0; k<4; k++) {
+					if(board[i][j][k].state == 0) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+		
 	}
 	
 	public Point[][][] getBoard() {
