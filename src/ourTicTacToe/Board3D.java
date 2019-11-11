@@ -97,7 +97,7 @@ public class Board3D {
 		return this.board;
 	}
 	
-	public Point[] getXes() { // if p1 wins, used by solver to update numGamesPlayed and numGamesWon for each individual point
+	public ArrayList<Point> getXes() { // if p1 wins, used by solver to update numGamesPlayed and numGamesWon for each individual point
 		ArrayList<Point> arrayListXes = new ArrayList<Point>();
 		for (int i=0; i<4; i++) {
 			for (int j=0; j<4; j++) {
@@ -108,12 +108,12 @@ public class Board3D {
 				}
 			}
 		}
-		Point[] finalArrayXes = (Point[]) arrayListXes.toArray(); //note: not tested yet
-		return finalArrayXes;
+//		Point[] finalArrayXes = (Point[]) arrayListXes.toArray(); //note: not tested yet
+		return arrayListXes;
 		
 	}
 	
-	public Point[] getOs() {  // if p2 wins, used by solver to update numGamesPlayed and numGamesWon for each individual point
+	public ArrayList<Point> getOs() {  // if p2 wins, used by solver to update numGamesPlayed and numGamesWon for each individual point
 		ArrayList<Point> arrayListOs = new ArrayList<Point>();
 		for (int i=0; i<4; i++) {
 			for (int j=0; j<4; j++) {
@@ -124,8 +124,8 @@ public class Board3D {
 				}
 			}
 		}
-		Point[] finalArrayOs = (Point[]) arrayListOs.toArray(); //note: not tested yet
-		return finalArrayOs;
+//		Point[] finalArrayOs = (Point[]) arrayListOs.toArray(); //note: not tested yet
+		return arrayListOs;
 	}
 	
 	
@@ -149,7 +149,7 @@ public class Board3D {
 					if (i==2 && j==0 && k==0) System.out.println("--2ND MID PLANE--");
 					if (i==3 && j==0 && k==0) System.out.println("---BOTTOM PLANE--");
 					
-					System.out.print(board[i][j][k].util_val + " "); 
+					System.out.print(Math.round(board[i][j][k].getUtilValue()*100.0)/100.0 + " "); 
 					
 				}
 				System.out.println();
@@ -167,7 +167,7 @@ public class Board3D {
 					if (i==2 && j==0 && k==0) System.out.println("--2ND MID PLANE--");
 					if (i==3 && j==0 && k==0) System.out.println("---BOTTOM PLANE--");
 					
-					System.out.print(board[i][j][k].state + " "); 
+					System.out.print(board[i][j][k].getState() + " "); 
 					
 				}
 				System.out.println();

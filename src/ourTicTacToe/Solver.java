@@ -55,6 +55,9 @@ public class Solver {
 					p.updateValue(-1);
 				}
 			}
+			board3D.printBoard();
+			board3D.printBoardState();
+			board3D.wipeBoard();
 		}
 		
 //		game.isP1 = true;
@@ -72,8 +75,7 @@ public class Solver {
 //		}
 	
 		//print out a board with utility values after a number of trials (trials1, trials2, trials3)
-		board3D.printBoard();
-		board3D.printBoardState();
+		
 	}
 	
 	public ArrayList<Integer> nextMoveNoRandom(Point[][][] board){
