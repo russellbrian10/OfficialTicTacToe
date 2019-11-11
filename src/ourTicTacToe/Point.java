@@ -7,6 +7,7 @@ public class Point {
 	int num_games;
 	int placeholder;
 	
+	//s is either -1, 0 or 1 (-1: O; 0: blank; 1: X)
 	public Point(int s){
 		state = s;
 		util_val = 0;
