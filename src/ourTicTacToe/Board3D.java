@@ -20,7 +20,7 @@ public class Board3D {
 	}
 	
 	//update board is passed a boolean indicating which player made the move and three ints giving position of changed point
-	public void updateBoard(boolean isP1, int x, int y, int z) {  
+	public int updateBoard(boolean isP1, int x, int y, int z) {  // returns -1 if p2(O's) has won, 0 if game is still ongoing, 1 if p1(X's) has won, and 2 if the game is over but no won has won
 		if (board[x][y][z].state == 0) {   //if the square is blank
 			if (isP1) {
 				board[x][y][z].state = 1;
@@ -30,14 +30,51 @@ public class Board3D {
 		}
 		
 		// checks if all spaces have been played or one of the two players has won a game.
-		checkIfWon(x,y,z);
-		checkIfOverNoWin();
+		int wonValue = checkIfWon(x,y,z);
+		if (wonValue == 0) {
+			if (checkIfOverNoWin()) {
+				wonValue=2;
+			}
+		}
+		return wonValue;
 
 	}
 	
 	public int checkIfWon(int x,int y,int z) {		// returns 1 if p1 has won, -1 if p2 has won, 0 if no one has won yet
 		int potentialWinner = board[x][y][z].state;
 		
+		boolean straight1 = true, straight2 = true, straight3 = true;
+		boolean diagonal1 = true, diagonal2 = true, diagonal3 = true, diagonal4 = true, diagonal5 = true, diagonal6 = true;
+		boolean diagonal7 = true, diagonal8 = true, diagonal9 = true, diagonal10 = true;
+		
+		//iterate through all possible lines of victory 
+		for (int i=0; i<4; i++) {
+			if (board[i][y][z].state != potentialWinner) {straight1 = false;} // if one of the values in this line is not potentialwinner, th
+			if (board[x][i][z].state != potentialWinner) {straight2 = false;}
+			if (board[x][y][i].state != potentialWinner) {straight3 = false;}
+			
+			// diagonal rows with winning potential
+			if (board[i][i][z].state != potentialWinner) {diagonal1 = false;}
+			if (board[i][3-i][z].state != potentialWinner) {diagonal2 = false;}
+			
+			if (board[i][y][i].state != potentialWinner) {diagonal3 = false;}
+			if (board[i][y][3-i].state != potentialWinner) {diagonal4 = false;}
+			
+			if (board[x][i][i].state != potentialWinner) {diagonal5 = false;}
+			if (board[x][3-i][i].state != potentialWinner) {diagonal6 = false;}
+			
+			//megadiagonals
+			if (board[i][i][i].state != potentialWinner) {diagonal7 = false;}
+			if (board[i][i][3-i].state != potentialWinner) {diagonal8 = false;}
+			if (board[i][3-i][i].state != potentialWinner) {diagonal9 = false;}
+			if (board[3-i][i][i].state != potentialWinner) {diagonal10 = false;}
+		}
+		if (straight1 || straight2 || straight3 || diagonal1 || diagonal2 || diagonal3 || diagonal4 || diagonal5 || //if one of the rows has 4 in a row
+				diagonal6 || diagonal7 || diagonal8 || diagonal9 || diagonal10) {
+			return potentialWinner;
+		} else {
+			return 0;
+		}	
 	}
 	
 	public boolean checkIfOverNoWin() {
