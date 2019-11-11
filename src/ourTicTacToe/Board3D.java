@@ -19,6 +19,8 @@ public class Board3D {
 		}
 			
 	}
+	String hiString = "he";
+	String hiString2 = "hello2";
 	
 	//update board is passed a boolean indicating which player made the move and three ints giving position of changed point
 	public void updateBoard(boolean isP1, int x, int y, int z) {  
