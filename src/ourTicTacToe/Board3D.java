@@ -1,10 +1,11 @@
 package ourTicTacToe;
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class Board3D {
 	private Point[][][] board = new Point[4][4][4];
 	public Board3D(){
-		
+//		DecimalFormat f = new DecimalFormat("##.00");
 		//PLAYER ONE USES X'ES, PLAYER TWO USES O'S
 		
 		//each point should have numGamesPlayed property and numGamesWon property.  these will be used for reward function
@@ -14,6 +15,7 @@ public class Board3D {
 			for (int j=0; j<4; j++) {
 				for (int k=0; k<4; k++) {
 					board[i][j][k] = new Point(0);
+					board[i][j][k].util_val = (float) (Math.round(Math.random()*100.0)/100.0);
 				}
 			}
 		}	
@@ -88,6 +90,24 @@ public class Board3D {
 					if (i==3 && j==0 && k==0) System.out.println("---BOTTOM PLANE--");
 					
 					System.out.print(board[i][j][k].util_val + " "); 
+					
+				}
+				System.out.println();
+				if((i==0 && j==3) || (i==1 && j==3) || (i==2 && j==3) || (i==3 && j==3)) System.out.println("-----------------");
+				System.out.println();
+			}
+		}
+	}
+	public void printBoardState(){
+		for (int i=0; i<4; i++) {
+			for (int j=0; j<4; j++) {
+				for (int k=0; k<4; k++) {
+					if (i==0 && j==0 && k==0) System.out.println("----TOP PLANE----");
+					if (i==1 && j==0 && k==0) System.out.println("--1ST MID PLANE--");
+					if (i==2 && j==0 && k==0) System.out.println("--2ND MID PLANE--");
+					if (i==3 && j==0 && k==0) System.out.println("---BOTTOM PLANE--");
+					
+					System.out.print(board[i][j][k].state + " "); 
 					
 				}
 				System.out.println();

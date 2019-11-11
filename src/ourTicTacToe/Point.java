@@ -25,7 +25,7 @@ public class Point {
 		if (outcome==1){ //PART OF WINNING SOLUTION
 			num_wins++;
 			num_games++;
-		}else{			//NOT PART OF WINNING SOLUTION
+		}else if(outcome==-1){			//NOT PART OF WINNING SOLUTION
 			num_games++;
 		}
 		util_val = num_wins/num_games;

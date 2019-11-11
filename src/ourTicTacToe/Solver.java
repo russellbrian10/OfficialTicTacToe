@@ -1,11 +1,12 @@
 package ourTicTacToe;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Solver {
-	public int temp = 600;
-	public int temp2 = 10000;
+	public boolean isP1 = true;
+	public ArrayList<Integer> posns = new ArrayList<Integer>(3);
 	
 	public static void main(String[] args) throws FileNotFoundException 
 	{ 
@@ -20,10 +21,54 @@ public class Solver {
 		}
 		
 		Board3D board3D = new Board3D();
-		//print out a board with utility values after a number of trials (trials1, trials2, trials3)
+		Solver game = new Solver();
 		Point[][][] board = board3D.getBoard();
 		
-		board3D.printBoard();
+		//RUN THE TRIALS
+		for(int i=0; i<trials1; i++){
+			game.posns = game.nextMoveNoRandom(board);
+			board3D.updateBoard(game.isP1, game.posns.get(0), game.posns.get(1), game.posns.get(2));
+			game.isP1 = !game.isP1;
+		}
 		
+//		game.isP1 = true;
+//		for(int i=0; i<trials2; i++){
+//			game.posns = game.nextMoveNoRandom(board);
+//			board3D.updateBoard(game.isP1, game.posns.get(0), game.posns.get(1), game.posns.get(2));
+//			game.isP1 = !game.isP1;
+//		}
+//		
+//		game.isP1 = true;
+//		for(int i=0; i<trials3; i++){
+//			game.posns = game.nextMoveNoRandom(board);
+//			board3D.updateBoard(game.isP1, game.posns.get(0), game.posns.get(1), game.posns.get(2));
+//			game.isP1 = !game.isP1;
+//		}
+	
+		//print out a board with utility values after a number of trials (trials1, trials2, trials3)
+		board3D.printBoard();
+		board3D.printBoardState();
+	}
+	
+	public ArrayList<Integer> nextMoveNoRandom(Point[][][] board){
+		ArrayList<Integer> positions = new ArrayList<Integer>();
+		positions.add(0);
+		positions.add(0);
+		positions.add(0);
+		float highestUtil = 0;
+		for (int i=0; i<4; i++) {
+			for (int j=0; j<4; j++) {
+				for (int k=0; k<4; k++) {
+					if (board[i][j][k].getUtilValue() > highestUtil){
+						highestUtil = board[i][j][k].getUtilValue();
+						
+						positions.set(0, i);
+						positions.set(1, j);
+						positions.set(2, k);
+					}
+				}
+			}
+		}	
+		return positions;
 	}
 }
