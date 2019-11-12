@@ -58,6 +58,13 @@ public class Solver {
 			}
 			board3D.printBoard();
 			board3D.printBoardState();
+			if(while_num==1){
+				System.out.println("PLAYER 1 WON");
+			}else if(while_num==-1){
+				System.out.println("PLAYER 2 WON");
+			}else if(while_num==2){
+				System.out.println("DRAW");
+			}
 			board3D.wipeBoard();
 		}
 		

@@ -28,6 +28,8 @@ public class Board3D {
 			} else {
 				board[x][y][z].state = -1;
 			}
+		} else{
+			System.out.println("This shouldn't be printing ");
 		}
 		
 		// checks if all spaces have been played or one of the two players has won a game.
