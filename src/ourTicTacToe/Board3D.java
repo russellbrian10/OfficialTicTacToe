@@ -156,16 +156,28 @@ public class Board3D {
 		}
 	}
 	
+	public void wipeBoardWipeUtility() {
+		for (int i=0; i<4; i++) {
+			for (int j=0; j<4; j++) {
+				for (int k=0; k<4; k++) {
+					board[i][j][k].state = 0; //adjust so that points property of currentvalue is correct
+					board[i][j][k].num_games = 1;
+					board[i][j][k].num_wins = 0;
+				}
+			}
+		}
+	}
+	
 	public void printBoard(){
 		for (int i=0; i<4; i++) {
 			for (int j=0; j<4; j++) {
 				for (int k=0; k<4; k++) {
-					if (i==0 && j==0 && k==0) System.out.println("----TOP PLANE----");
-					if (i==1 && j==0 && k==0) System.out.println("--1ST MID PLANE--");
-					if (i==2 && j==0 && k==0) System.out.println("--2ND MID PLANE--");
-					if (i==3 && j==0 && k==0) System.out.println("---BOTTOM PLANE--");
+					if (i==0 && j==0 && k==0) System.out.println("-----TOP PLANE-----");
+					if (i==1 && j==0 && k==0) System.out.println("---1ST MID PLANE---");
+					if (i==2 && j==0 && k==0) System.out.println("---2ND MID PLANE---");
+					if (i==3 && j==0 && k==0) System.out.println("----BOTTOM PLANE---");
 					
-					System.out.print(Math.round(board[i][j][k].getUtilValue()) + " "); 
+					System.out.print(Math.round(board[i][j][k].getUtilValue()*1000.0)/1000.0 + " "); 
 					
 				}
 				System.out.println();

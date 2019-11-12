@@ -23,9 +23,9 @@ public class Solver {
 		
 		Board3D board3D = new Board3D();
 		Solver game = new Solver();
-		Point[][][] board = board3D.getBoard();
 		
 		//RUN THE TRIALS
+		/************************* FIRST TRIAL ***********************/
 		for(int i=0; i<trials1; i++){
 			int while_num = 0;
 			while(while_num == 0){
@@ -56,31 +56,107 @@ public class Solver {
 					p.updateValue(-1);
 				}
 			}
-			board3D.printBoard();
-			board3D.printBoardState();
-			if(while_num==1){
-				System.out.println("PLAYER 1 WON");
-			}else if(while_num==-1){
-				System.out.println("PLAYER 2 WON");
-			}else if(while_num==2){
-				System.out.println("DRAW");
+//			board3D.printBoard();
+//			board3D.printBoardState();
+//			if(while_num==1){
+//				System.out.println("PLAYER 1 WON");
+//			}else if(while_num==-1){
+//				System.out.println("PLAYER 2 WON");
+//			}else if(while_num==2){
+//				System.out.println("DRAW");
+//			}
+			if (i==trials1-1) {
+				board3D.printBoard();
+				board3D.wipeBoardWipeUtility();
 			}
 			board3D.wipeBoard();
+			
 		}
 		
-//		game.isP1 = true;
-//		for(int i=0; i<trials2; i++){
-//			game.posns = game.nextMoveNoRandom(board);
-//			board3D.updateBoard(game.isP1, game.posns.get(0), game.posns.get(1), game.posns.get(2));
-//			game.isP1 = !game.isP1;
-//		}
-//		
-//		game.isP1 = true;
-//		for(int i=0; i<trials3; i++){
-//			game.posns = game.nextMoveNoRandom(board);
-//			board3D.updateBoard(game.isP1, game.posns.get(0), game.posns.get(1), game.posns.get(2));
-//			game.isP1 = !game.isP1;
-//		}
+		
+		/****************** SECOND TRIAL ***************************/
+		game.isP1 = true;
+		for(int i=0; i<trials2; i++){
+			int while_num = 0;
+			while(while_num == 0){
+				game.posns = game.nextMoveRandomizationAdjusted(board3D, trials1, i);
+				while_num = board3D.updateBoard(game.isP1, game.posns.get(0), game.posns.get(1), game.posns.get(2));
+				game.isP1 = !game.isP1;
+				
+			}
+			if (while_num==1){ //Player 1 WINS (X's)
+				for(Point p : board3D.getXes()){
+					p.updateValue(1);
+				}
+				for(Point p : board3D.getOs()){
+					p.updateValue(-1);
+				}
+			} else if(while_num==-1){ //Player 2 WINS (O's)
+				for(Point p : board3D.getOs()){
+					p.updateValue(1);
+				}
+				for(Point p : board3D.getXes()){
+					p.updateValue(-1);
+				}
+			} else if(while_num==2){ //DRAW
+				for(Point p : board3D.getOs()){
+					p.updateValue(-1);
+				}
+				for(Point p : board3D.getXes()){
+					p.updateValue(-1);
+				}
+			}
+
+			if (i==trials2-1) {
+				board3D.printBoard();
+				board3D.wipeBoardWipeUtility();
+			}
+			
+			board3D.wipeBoard();
+
+		}
+		
+		/****************** THIRD TRIAL ***************************/
+		game.isP1 = true;
+		for(int i=0; i<trials3; i++){
+			int while_num = 0;
+			while(while_num == 0){
+				game.posns = game.nextMoveRandomizationAdjusted(board3D, trials1, i);
+				while_num = board3D.updateBoard(game.isP1, game.posns.get(0), game.posns.get(1), game.posns.get(2));
+				game.isP1 = !game.isP1;
+				
+			}
+			if (while_num==1){ //Player 1 WINS (X's)
+				for(Point p : board3D.getXes()){
+					p.updateValue(1);
+				}
+				for(Point p : board3D.getOs()){
+					p.updateValue(-1);
+				}
+			} else if(while_num==-1){ //Player 2 WINS (O's)
+				for(Point p : board3D.getOs()){
+					p.updateValue(1);
+				}
+				for(Point p : board3D.getXes()){
+					p.updateValue(-1);
+				}
+			} else if(while_num==2){ //DRAW
+				for(Point p : board3D.getOs()){
+					p.updateValue(-1);
+				}
+				for(Point p : board3D.getXes()){
+					p.updateValue(-1);
+				}
+			}
+			
+			if (i==trials3-1) {
+				board3D.printBoard();
+				board3D.wipeBoardWipeUtility();
+			}
+			
+			board3D.wipeBoard();
+
+		}
 	
 		//print out a board with utility values after a number of trials (trials1, trials2, trials3)
 		
