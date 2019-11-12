@@ -81,6 +81,7 @@ public class Solver {
 	
 	public ArrayList<Integer> nextMoveNoRandom(Point[][][] board){
 		ArrayList<Integer> positions = new ArrayList<Integer>(3);
+		ArrayList<Point> pointsWithHighUtil = new ArrayList<Point>();
 		positions.add(0);
 		positions.add(0);
 		positions.add(0);
@@ -90,14 +91,23 @@ public class Solver {
 				for (int k=0; k<4; k++) {
 					if (board[i][j][k].getUtilValue() > highestUtil && board[i][j][k].state == 0){
 						highestUtil = board[i][j][k].getUtilValue();
-						
-						positions.set(0, i);
-						positions.set(1, j);
-						positions.set(2, k);
+						pointsWithHighUtil.clear();
+						pointsWithHighUtil.add(board[i][j][k]);
+
+					} else if (board[i][j][k].getUtilValue() == highestUtil && board[i][j][k].state == 0) {
+						pointsWithHighUtil.add(board[i][j][k]);
 					}
 				}
 			}
 		}	
+		//randomly select one point from arrayList of points and return its position
+		Random r = new Random();
+		Point selectedPoint = pointsWithHighUtil.get(r.nextInt(pointsWithHighUtil.size()));
+		
+		positions.set(0, selectedPoint.getI);
+		positions.set(1, selectedPoint.getJ);
+		positions.set(2, selectedPoint.getK);
+		
 		return positions;
 	}
 	
