@@ -2,7 +2,7 @@
 HW2 Comp560
 
 ## To run and compile our program:
-- Download the jar file (3DTicTacToeAssignmentRunnable.jar) from GitHub repo
+- Download the jar file (**3DTicTacToeAssignmentRunnable.jar**) from GitHub repo
 - Launch Command Prompt (shell)
 - Navigate to the directory where the jar file is located
 - Type "**java -jar 3DTicTacToeAssignmentRunnable.jar**", press enter
