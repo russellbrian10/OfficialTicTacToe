@@ -6,5 +6,5 @@ HW2 Comp560
 - Launch Command Prompt (shell)
 - Navigate to the directory where the jar file is located
 - Type "**java -jar 3DTicTacToeAssignmentRunnable.jar**", press enter
-- Pass 3 arguments in ascending order, space separated (i.e. "100 500 2000")
+- Pass 3 arguments in ascending order, space separated (i.e. "100 500 2000"), press enter
 - Program should print out the boards with the utility values after each set of trials
