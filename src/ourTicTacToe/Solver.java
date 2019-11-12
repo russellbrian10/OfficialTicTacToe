@@ -121,8 +121,8 @@ public class Solver {
 	
 	
 	public ArrayList<Integer> nextMoveRandomizationAdjusted(Point[][][] board, int totalNumTrials, int currentNumTrials) {
-		double explorationLikelihood = (currentNumTrials-totalNumTrials)/totalNumTrials;
-		if (Math.random() > explorationLikelihood) {
+		double explorationLikelihood = (currentNumTrials)/totalNumTrials;
+		if (Math.random() < explorationLikelihood) {
 			return nextMoveNoRandom(board);
 		} else {
 			Random r = new Random();

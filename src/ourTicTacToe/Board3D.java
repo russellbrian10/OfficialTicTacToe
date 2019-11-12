@@ -150,7 +150,7 @@ public class Board3D {
 					if (i==2 && j==0 && k==0) System.out.println("--2ND MID PLANE--");
 					if (i==3 && j==0 && k==0) System.out.println("---BOTTOM PLANE--");
 					
-					System.out.print(Math.round(board[i][j][k].getUtilValue()*100.0)/100.0 + " "); 
+					System.out.print(Math.round(board[i][j][k].getUtilValue()) + " "); 
 					
 				}
 				System.out.println();
