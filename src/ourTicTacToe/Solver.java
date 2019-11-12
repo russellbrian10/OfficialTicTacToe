@@ -29,7 +29,7 @@ public class Solver {
 		for(int i=0; i<trials1; i++){
 			int while_num = 0;
 			while(while_num == 0){
-				game.posns = game.nextMoveNoRandom(board);
+				game.posns = game.nextMoveRandomizationAdjusted(board, trials1, i);
 				while_num = board3D.updateBoard(game.isP1, game.posns.get(0), game.posns.get(1), game.posns.get(2));
 				game.isP1 = !game.isP1;
 				
@@ -56,6 +56,9 @@ public class Solver {
 					p.updateValue(-1);
 				}
 			}
+			board3D.printBoard();
+			board3D.printBoardState();
+			board3D.wipeBoard();
 		}
 		
 //		game.isP1 = true;
@@ -73,8 +76,7 @@ public class Solver {
 //		}
 	
 		//print out a board with utility values after a number of trials (trials1, trials2, trials3)
-		board3D.printBoard();
-		board3D.printBoardState();
+		
 	}
 	
 	public ArrayList<Integer> nextMoveNoRandom(Point[][][] board){
@@ -82,7 +84,7 @@ public class Solver {
 		positions.add(0);
 		positions.add(0);
 		positions.add(0);
-		float highestUtil = -1;
+		double highestUtil = -1;
 		for (int i=0; i<4; i++) {
 			for (int j=0; j<4; j++) {
 				for (int k=0; k<4; k++) {
@@ -98,8 +100,6 @@ public class Solver {
 		}	
 		return positions;
 	}
-	
-	
 	
 	
 	
