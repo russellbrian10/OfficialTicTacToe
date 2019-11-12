@@ -11,13 +11,16 @@ public class Point {
 	public Point(int s){
 		state = s;
 		util_val = 0;
-		num_wins = 1;
+		num_wins = 0;
 		num_games = 1;
 	}
 	
 	//Change the state of the Point (-1: O; 0: blank; 1: X)
 	public void changeState(int newState){
 		state = newState;
+	}
+	public int getState(){
+		return state;
 	}
 	
 	//Increase or decrease the value depending on game outcome
@@ -28,16 +31,21 @@ public class Point {
 		}else if(outcome==-1){			//NOT PART OF WINNING SOLUTION
 			num_games++;
 		}
-		util_val = num_wins/num_games;
+//		util_val = num_wins/num_games;
 	}	
 
 	public int getNumWins(){
-		return 1;
+		return num_wins;
 	}
 	public int getNumGames(){
-		return 1;
+		return num_games;
 	}
-	public float getUtilValue(){
-		return util_val;
+	public double getUtilValue(){
+		if (num_games > 1) {
+			return (double) num_wins/(num_games-1);
+		} else {
+			return (double) num_wins/num_games;
+		}
+//		return (float) num_wins/num_games;
 	}
 }
