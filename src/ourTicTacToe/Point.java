@@ -1,18 +1,30 @@
 package ourTicTacToe;
 
+import java.util.ArrayList;
+
 public class Point {
 	int state; //
 	float util_val;
 	int num_wins;
 	int num_games;
 	int placeholder;
+//	ArrayList<Integer> position = new ArrayList<>(3);
+	int i_pos;
+	int j_pos;
+	int k_pos;
 	
 	//s is either -1, 0 or 1 (-1: O; 0: blank; 1: X)
-	public Point(int s){
+	public Point(int s, int i, int j, int k){
 		state = s;
 		util_val = 0;
 		num_wins = 0;
 		num_games = 1;
+//		position.add(i);
+//		position.add(j);
+//		position.add(k);
+		i_pos = i;
+		j_pos = j;
+		k_pos = k;
 	}
 	
 	//Change the state of the Point (-1: O; 0: blank; 1: X)
@@ -47,5 +59,14 @@ public class Point {
 			return (double) num_wins/num_games;
 		}
 //		return (float) num_wins/num_games;
+	}
+	public int getI(){
+		return i_pos;
+	}
+	public int getJ(){
+		return j_pos;
+	}
+	public int getK(){
+		return k_pos;
 	}
 }

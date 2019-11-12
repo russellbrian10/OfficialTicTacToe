@@ -88,7 +88,7 @@ public class Solver {
 		for (int i=0; i<4; i++) {
 			for (int j=0; j<4; j++) {
 				for (int k=0; k<4; k++) {
-					if (board[i][j][k].getUtilValue() > highestUtil && board[i][j][k].state == 0){
+					if (board[i][j][k].getUtilValue() >= highestUtil && board[i][j][k].state == 0){
 						highestUtil = board[i][j][k].getUtilValue();
 						
 						positions.set(0, i);
