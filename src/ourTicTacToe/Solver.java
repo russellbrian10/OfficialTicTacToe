@@ -89,7 +89,7 @@ public class Solver {
 		for (int i=0; i<4; i++) {
 			for (int j=0; j<4; j++) {
 				for (int k=0; k<4; k++) {
-					if (board[i][j][k].getUtilValue() >= highestUtil && board[i][j][k].state == 0){
+					if (board[i][j][k].getUtilValue() > highestUtil && board[i][j][k].state == 0){
 						highestUtil = board[i][j][k].getUtilValue();
 						pointsWithHighUtil.clear();
 						pointsWithHighUtil.add(board[i][j][k]);
@@ -104,9 +104,9 @@ public class Solver {
 		Random r = new Random();
 		Point selectedPoint = pointsWithHighUtil.get(r.nextInt(pointsWithHighUtil.size()));
 		
-		positions.set(0, selectedPoint.getI);
-		positions.set(1, selectedPoint.getJ);
-		positions.set(2, selectedPoint.getK);
+		positions.set(0, selectedPoint.getI());
+		positions.set(1, selectedPoint.getJ());
+		positions.set(2, selectedPoint.getK());
 		
 		return positions;
 	}
