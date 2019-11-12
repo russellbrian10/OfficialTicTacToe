@@ -29,7 +29,7 @@ public class Solver {
 		for(int i=0; i<trials1; i++){
 			int while_num = 0;
 			while(while_num == 0){
-				game.posns = game.nextMoveRandomizationAdjusted(board, trials1, i);
+				game.posns = game.nextMoveRandomizationAdjusted(board3D, trials1, i);
 				while_num = board3D.updateBoard(game.isP1, game.posns.get(0), game.posns.get(1), game.posns.get(2));
 				game.isP1 = !game.isP1;
 				
@@ -119,18 +119,22 @@ public class Solver {
 	}
 	
 	
-	
-	public ArrayList<Integer> nextMoveRandomizationAdjusted(Point[][][] board, int totalNumTrials, int currentNumTrials) {
+	public ArrayList<Integer> nextMoveRandomizationAdjusted(Board3D myBoard, int totalNumTrials, int currentNumTrials) {
 		double explorationLikelihood = (currentNumTrials)/totalNumTrials;
 		if (Math.random() < explorationLikelihood) {
-			return nextMoveNoRandom(board);
+			return nextMoveNoRandom(myBoard.getBoard());
 		} else {
 			Random r = new Random();
-			ArrayList<Integer> randomizedPoint = new ArrayList<Integer>();
-			randomizedPoint.add(r.nextInt(4));
-			randomizedPoint.add(r.nextInt(4));
-			randomizedPoint.add(r.nextInt(4));
-			return randomizedPoint;
+			
+			Point randomizedBlankPoint = myBoard.getBlanks().get(r.nextInt(myBoard.getBlanks().size()));
+			
+			ArrayList<Integer> myPointNums = new ArrayList<Integer>();
+			
+			myPointNums.add(randomizedBlankPoint.getI());
+			myPointNums.add(randomizedBlankPoint.getJ());
+			myPointNums.add(randomizedBlankPoint.getK());
+			
+			return myPointNums;
 		}	
 	}
 }
