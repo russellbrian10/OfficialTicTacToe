@@ -129,6 +129,21 @@ public class Board3D {
 		return arrayListOs;
 	}
 	
+	public ArrayList<Point> getBlanks() {  // if p2 wins, used by solver to update numGamesPlayed and numGamesWon for each individual point
+		ArrayList<Point> arrayListBlanks = new ArrayList<Point>();
+		for (int i=0; i<4; i++) {
+			for (int j=0; j<4; j++) {
+				for (int k=0; k<4; k++) {
+					if (board[i][j][k].state == 0) {
+						arrayListBlanks.add(board[i][j][k]);
+					}
+				}
+			}
+		}
+//		Point[] finalArrayOs = (Point[]) arrayListOs.toArray(); //note: not tested yet
+		return arrayListBlanks;
+	}
+	
 	
 	public void wipeBoard() {
 		for (int i=0; i<4; i++) {
