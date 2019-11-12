@@ -56,16 +56,9 @@ public class Solver {
 					p.updateValue(-1);
 				}
 			}
-//			board3D.printBoard();
-//			board3D.printBoardState();
-//			if(while_num==1){
-//				System.out.println("PLAYER 1 WON");
-//			}else if(while_num==-1){
-//				System.out.println("PLAYER 2 WON");
-//			}else if(while_num==2){
-//				System.out.println("DRAW");
-//			}
+
 			if (i==trials1-1) {
+				System.out.println("****FIRST TRIAL****" + "\n");
 				board3D.printBoard();
 				board3D.wipeBoardWipeUtility();
 			}
@@ -79,7 +72,7 @@ public class Solver {
 		for(int i=0; i<trials2; i++){
 			int while_num = 0;
 			while(while_num == 0){
-				game.posns = game.nextMoveRandomizationAdjusted(board3D, trials1, i);
+				game.posns = game.nextMoveRandomizationAdjusted(board3D, trials2, i);
 				while_num = board3D.updateBoard(game.isP1, game.posns.get(0), game.posns.get(1), game.posns.get(2));
 				game.isP1 = !game.isP1;
 				
@@ -108,6 +101,7 @@ public class Solver {
 			}
 
 			if (i==trials2-1) {
+				System.out.println("****SECOND TRIAL****" + "\n");
 				board3D.printBoard();
 				board3D.wipeBoardWipeUtility();
 			}
@@ -121,7 +115,7 @@ public class Solver {
 		for(int i=0; i<trials3; i++){
 			int while_num = 0;
 			while(while_num == 0){
-				game.posns = game.nextMoveRandomizationAdjusted(board3D, trials1, i);
+				game.posns = game.nextMoveRandomizationAdjusted(board3D, trials3, i);
 				while_num = board3D.updateBoard(game.isP1, game.posns.get(0), game.posns.get(1), game.posns.get(2));
 				game.isP1 = !game.isP1;
 				
@@ -150,6 +144,7 @@ public class Solver {
 			}
 			
 			if (i==trials3-1) {
+				System.out.println("****THIRD TRIAL****" + "\n");
 				board3D.printBoard();
 				board3D.wipeBoardWipeUtility();
 			}
@@ -158,7 +153,6 @@ public class Solver {
 
 		}
 	
-		//print out a board with utility values after a number of trials (trials1, trials2, trials3)
 		
 	}
 	

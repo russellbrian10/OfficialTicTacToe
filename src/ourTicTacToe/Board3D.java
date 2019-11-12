@@ -140,7 +140,6 @@ public class Board3D {
 				}
 			}
 		}
-//		Point[] finalArrayOs = (Point[]) arrayListOs.toArray(); //note: not tested yet
 		return arrayListBlanks;
 	}
 	
@@ -181,7 +180,7 @@ public class Board3D {
 					
 				}
 				System.out.println();
-				if((i==0 && j==3) || (i==1 && j==3) || (i==2 && j==3) || (i==3 && j==3)) System.out.println("-----------------");
+				if((i==0 && j==3) || (i==1 && j==3) || (i==2 && j==3) || (i==3 && j==3)) System.out.println("-------------------");
 				System.out.println();
 			}
 		}
