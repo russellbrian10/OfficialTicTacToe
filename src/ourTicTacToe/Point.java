@@ -6,12 +6,14 @@ public class Point {
 	int state; 
 	int num_wins;
 	int num_games;
-	int placeholder;
 	int i_pos;
 	int j_pos;
 	int k_pos;
 	
-	//s is either -1, 0 or 1 (-1: O; 0: blank; 1: X)
+	/*
+	 * s is either -1, 0 or 1 (-1: O; 0: blank; 1: X)
+	 * i, j, k are the position coords of the Point on the 3D Board
+	 */
 	public Point(int s, int i, int j, int k){
 		state = s;
 		num_wins = 0;
@@ -26,6 +28,7 @@ public class Point {
 	public void changeState(int newState){
 		state = newState;
 	}
+	
 	public int getState(){
 		return state;
 	}
@@ -35,7 +38,7 @@ public class Point {
 		if (outcome==1){ //PART OF WINNING SOLUTION
 			num_wins++;
 			num_games++;
-		}else if(outcome==-1){			//NOT PART OF WINNING SOLUTION
+		}else if(outcome==-1){	//NOT PART OF WINNING SOLUTION
 			num_games++;
 		}
 
@@ -44,9 +47,15 @@ public class Point {
 	public int getNumWins(){
 		return num_wins;
 	}
+	
 	public int getNumGames(){
 		return num_games;
 	}
+	
+	/*
+	 * Returns the utility value
+	 * Calculated by dividing the num_wins by num_games
+	 */
 	public double getUtilValue(){
 		if (num_games > 1) {
 			return (double) num_wins/(num_games-1);
@@ -54,6 +63,7 @@ public class Point {
 			return (double) num_wins/num_games;
 		}
 	}
+	
 	public int getI(){
 		return i_pos;
 	}

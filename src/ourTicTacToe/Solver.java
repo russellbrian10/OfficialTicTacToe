@@ -16,6 +16,7 @@ public class Solver {
 		int trials2 = sc.nextInt();
 		int trials3 = sc.nextInt();
 		
+		//If the inputs are not in ascending order then it terminates
 		if ((trials1 < 0 & trials2 < 0 & trials3 < 0) || trials1 > trials2 || trials2 > trials3){
 			System.out.println("Error in input. Try again");
 			System.exit(0);
@@ -24,16 +25,25 @@ public class Solver {
 		Board3D board3D = new Board3D();
 		Solver game = new Solver();
 		
-		//RUN THE TRIALS
+		//  RUN THE TRIALS
 		/************************* FIRST TRIAL ***********************/
 		for(int i=0; i<trials1; i++){
 			int while_num = 0;
-			while(while_num == 0){
-				game.posns = game.nextMoveRandomizationAdjusted(board3D, trials1, i);
+			while(while_num == 0){ // The game is active
+				
+				//This will return the position of the next move the player should make
+				game.posns = game.nextMoveRandomizationAdjusted(board3D, trials1, i); 
+				
+				/*
+				 * while_num will continue being 0 unless a player wins or it ends in a draw
+				 * updateBoard will 
+				 */
 				while_num = board3D.updateBoard(game.isP1, game.posns.get(0), game.posns.get(1), game.posns.get(2));
 				game.isP1 = !game.isP1;
 				
 			}
+			
+			/* UPDATING THE UTILITY VALUES	*/
 			if (while_num==1){ //Player 1 WINS (X's)
 				for(Point p : board3D.getXes()){
 					p.updateValue(1);
@@ -57,6 +67,7 @@ public class Solver {
 				}
 			}
 
+			//Runs on the last trial, prints the utility values and then wipes them
 			if (i==trials1-1) {
 				System.out.println("****FIRST TRIAL****" + "\n");
 				board3D.printBoard();
@@ -77,6 +88,8 @@ public class Solver {
 				game.isP1 = !game.isP1;
 				
 			}
+			
+			/* UPDATING THE UTILITY VALUES	*/
 			if (while_num==1){ //Player 1 WINS (X's)
 				for(Point p : board3D.getXes()){
 					p.updateValue(1);
@@ -120,6 +133,8 @@ public class Solver {
 				game.isP1 = !game.isP1;
 				
 			}
+			
+			/* UPDATING THE UTILITY VALUES	*/
 			if (while_num==1){ //Player 1 WINS (X's)
 				for(Point p : board3D.getXes()){
 					p.updateValue(1);
@@ -156,6 +171,12 @@ public class Solver {
 		
 	}
 	
+	/*
+	 * EXPLOITATION
+	 * Returns an ArrayList of coordinates (i, j, k) of the Point with highest utility value.
+	 * Does this by iterating through the board and finding the highest utility value.
+	 * If there are multiple Points with the same utility value, then the method chooses one at random
+	 */
 	public ArrayList<Integer> nextMoveNoRandom(Point[][][] board){
 		ArrayList<Integer> positions = new ArrayList<Integer>(3);
 		ArrayList<Point> pointsWithHighUtil = new ArrayList<Point>();
@@ -163,6 +184,7 @@ public class Solver {
 		positions.add(0);
 		positions.add(0);
 		double highestUtil = -1;
+		
 		for (int i=0; i<4; i++) {
 			for (int j=0; j<4; j++) {
 				for (int k=0; k<4; k++) {
@@ -177,7 +199,8 @@ public class Solver {
 				}
 			}
 		}	
-		//randomly select one point from arrayList of points and return its position
+		
+		//randomly select one point from ArrayList of Points and return its position
 		Random r = new Random();
 		Point selectedPoint = pointsWithHighUtil.get(r.nextInt(pointsWithHighUtil.size()));
 		
@@ -188,10 +211,16 @@ public class Solver {
 		return positions;
 	}
 	
-	
+	/*
+	 * EXPLORATION
+	 * Returns an ArrayList of coordinates (i, j, k) of the Point the player will play
+	 * The game is more likely to explore at the beginning, and explore less as more trials are made.
+	 * The game will only explore if the exploitationLikelihood is smaller than a random number.
+	 * When exploring, a random unoccupied point will be chosen as the next move 
+	 */
 	public ArrayList<Integer> nextMoveRandomizationAdjusted(Board3D myBoard, int totalNumTrials, int currentNumTrials) {
-		double explorationLikelihood = (currentNumTrials)/totalNumTrials;
-		if (Math.random() < explorationLikelihood) {
+		double exploitationLikelihood = (currentNumTrials)/totalNumTrials;
+		if (Math.random() < exploitationLikelihood) {
 			return nextMoveNoRandom(myBoard.getBoard());
 		} else {
 			Random r = new Random();
