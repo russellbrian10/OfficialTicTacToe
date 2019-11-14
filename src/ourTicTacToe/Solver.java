@@ -32,7 +32,7 @@ public class Solver {
 			while(while_num == 0){ // The game is active
 				
 				//This will return the position of the next move the player should make
-				game.posns = game.nextMoveRandomizationAdjusted(board3D, trials1, i); 
+				game.posns = game.nextMoveExploration(board3D, trials1, i); 
 				
 				/*
 				 * while_num will continue being 0 unless a player wins or it ends in a draw
@@ -83,7 +83,7 @@ public class Solver {
 		for(int i=0; i<trials2; i++){
 			int while_num = 0;
 			while(while_num == 0){
-				game.posns = game.nextMoveRandomizationAdjusted(board3D, trials2, i);
+				game.posns = game.nextMoveExploration(board3D, trials2, i);
 				while_num = board3D.updateBoard(game.isP1, game.posns.get(0), game.posns.get(1), game.posns.get(2));
 				game.isP1 = !game.isP1;
 				
@@ -128,7 +128,7 @@ public class Solver {
 		for(int i=0; i<trials3; i++){
 			int while_num = 0;
 			while(while_num == 0){
-				game.posns = game.nextMoveRandomizationAdjusted(board3D, trials3, i);
+				game.posns = game.nextMoveExploration(board3D, trials3, i);
 				while_num = board3D.updateBoard(game.isP1, game.posns.get(0), game.posns.get(1), game.posns.get(2));
 				game.isP1 = !game.isP1;
 				
@@ -177,7 +177,7 @@ public class Solver {
 	 * Does this by iterating through the board and finding the highest utility value.
 	 * If there are multiple Points with the same utility value, then the method chooses one at random
 	 */
-	public ArrayList<Integer> nextMoveNoRandom(Point[][][] board){
+	public ArrayList<Integer> nextMoveExploitation(Point[][][] board){
 		ArrayList<Integer> positions = new ArrayList<Integer>(3);
 		ArrayList<Point> pointsWithHighUtil = new ArrayList<Point>();
 		positions.add(0);
@@ -218,10 +218,10 @@ public class Solver {
 	 * The game will only explore if the exploitationLikelihood is smaller than a random number.
 	 * When exploring, a random unoccupied point will be chosen as the next move 
 	 */
-	public ArrayList<Integer> nextMoveRandomizationAdjusted(Board3D myBoard, int totalNumTrials, int currentNumTrials) {
+	public ArrayList<Integer> nextMoveExploration(Board3D myBoard, int totalNumTrials, int currentNumTrials) {
 		double exploitationLikelihood = (currentNumTrials)/totalNumTrials;
 		if (Math.random() < exploitationLikelihood) {
-			return nextMoveNoRandom(myBoard.getBoard());
+			return nextMoveExploitation(myBoard.getBoard());
 		} else {
 			Random r = new Random();
 			
